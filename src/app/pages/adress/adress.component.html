@@ -1,0 +1,177 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Список адресов</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                ID
+              </th>
+              <th>
+                Название города
+              </th>
+              <th>
+                Название улицы
+              </th>
+              <th>
+                Номер дома
+              </th>
+              <th>
+                Номер квартиры
+              </th>
+              <th>Редактировать</th>
+              <th>Удалить</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let adress of adresses">
+                <td>{{ adress.id }}</td>
+                <td>{{ adress.city }}</td>
+                <td>{{ adress.street }}</td>
+                  <td>{{ adress.house }}</td>
+                    <td>{{ adress.flat }}</td>
+                <td><button type="" class="btn btn-primary btn-round">Изменить</button></td>
+                <td><button type="" class="btn btn-primary btn-round">Удалить</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- НАЧАЛО ФОРМЫ ДЛЯ ИЗМЕНЕНИЯ -->
+    <div class="col-md-8">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Изменить данные сотрудника</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Имя</label>
+                  <input type="text" class="form-control" placeholder="Введите имя" value="">
+                </div>
+              </div>
+              <div class="col-md-4 px-1">
+                <div class="form-group">
+                  <label>Фамилия</label>
+                  <input type="text" class="form-control" placeholder="Введите фамилию" value="">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Отчество</label>
+                  <input type="text" class="form-control" placeholder="Введите отчество">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Электронная почта</label>
+                  <input type="email" class="form-control" placeholder="Введите электронную почту" value="">
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label>Телефон</label>
+                  <input type="number" class="form-control" placeholder="Введите телефон" value="">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Должность</label>
+                  <input type="text" class="form-control" placeholder="Выберите должность" value="">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round">Подтвердить</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- КОНЕЦ ФОРМЫ ДЛЯ ИЗМЕННЕИЯ -->
+    <!-- НАЧАЛО ФОРМЫ ДЛЯ ДОБАВЛЕНИЯ -->
+    <!-- <div class="col-md-8">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Добавить сотрудника</h5>
+        </div>
+        <div class="card-body">
+          <form #personForm="ngForm" (ngSubmit)="addNewUser()">
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Имя</label>
+                  <input type="text" name="name" class="form-control" placeholder="Введите имя" value="" [(ngModel)]="person.name">
+                </div>
+              </div>
+              <div class="col-md-4 px-1">
+                <div class="form-group">
+                  <label>Фамилия</label>
+                  <input type="text" name="surname" class="form-control" placeholder="Введите фамилию" value="" [(ngModel)]="person.surname">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Отчество</label>
+                  <input type="text" name="patronymic" class="form-control" placeholder="Введите отчество" [(ngModel)]="person.patronymic">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Электронная почта</label>
+                  <input type="email" name="email" class="form-control" placeholder="Введите электронную почту" value="" [(ngModel)]="person.email">
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label>Телефон</label>
+                  <input type="number" name="telephone" class="form-control" placeholder="Введите телефон" value="" [(ngModel)]="person.telephone">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Должность</label>
+                  <select class="form-control" name="role_id" id="" [(ngModel)]="person.role_id">
+                    <option *ngFor="let role of roles" value="{{ role.role_id }}">
+                      {{ role.role_name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Пароль</label>
+                  <input type="password" name="password" class="form-control" placeholder="Введите пароль" value="" [(ngModel)]="person.password">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round">Добавить</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> -->
+    <!-- КОНЕЦ ФОРМЫ ДЛЯ ДОБАВЛЕНИЯ -->
+  </div>
+</div>
