@@ -53,6 +53,7 @@ export class TableComponent implements OnInit{
       'role_id': "",
       'password': ""
     };
+
     headers = {
     'Content-Type': 'application/json' };
 showForm() {
@@ -77,6 +78,13 @@ showChangeForm(user) {
 }
 hideChangeForm() {
   document.getElementById("changeForm").style.display="none";
+}
+showDeleteForm(user) {
+  document.getElementById("deleteUserForm").style.display="flex";
+  this.employee.id = user.id;
+}
+hideDeleteForm() {
+  document.getElementById("deleteUserForm").style.display="none";
 }
 // ДОБАВИТЬ ДАННЫЕ О СОТРУДНИКЕ
     addNewUser(){
@@ -119,7 +127,25 @@ hideChangeForm() {
         }
       );
     }
+// УДАЛИТЬ ДАННЫЕ О СОТРУДНИКЕ
+deleteUser() {
+  const headers = { 'content-type': 'application/json'};
+  const body=JSON.stringify(this.employee);
+  console.log(body);
 
+  return this.http.post('http://ambul/api/deleteuser', body,{responseType: 'text'}).subscribe(
+    (data: any) => {
+        console.log('success');
+        console.log(data);
+        alert("Данные сотрудника успешно удалены");
+        window.location.reload();
+      },
+      error => {
+        console.log(error)
+        alert("Ошибка удаления данных сотрудника");
+      }
+    );
+}
 // const setRequestDetails = async() => {
 //   await this.http.post('http://ambul/api/user', '').then( res => {
 //     let copyResponse = res

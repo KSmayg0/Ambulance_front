@@ -44,7 +44,7 @@
                 <td>{{ user.role_name }}</td>
                 <td style="display:none;">{{ user.password }}</td>
                 <td><button type="" class="btn btn-primary btn-round" (click)="showChangeForm(user)">Изменить</button></td>
-                <td><button type="" class="btn btn-primary btn-round">Удалить</button></td>
+                <td><button type="" class="btn btn-primary btn-round" (click)="showDeleteForm(user)">Удалить</button></td>
               </tr>
             </tbody>
           </table>
@@ -199,5 +199,30 @@
       </div>
     </div>
     <!-- КОНЕЦ ФОРМЫ ДЛЯ ДОБАВЛЕНИЯ -->
+    <!-- НАЧАЛО ФОРМЫ ДЛЯ УДАЛЕНИЯ -->
+    <div class="col-md-12" id="deleteUserForm">
+      <div class="col-md-8 card card-user deleteUser">
+        <div class="card-header">
+          <h5 class="card-title">Удалить сотрудника</h5>
+        </div>
+        <div class="card-body">
+          <form #personForm="ngForm" (ngSubmit)="deleteUser()" method="POST">
+            <div class="row">
+              <div class="col-md-12 pr-1">
+                <h3>Вы собираетесь удалить данные сотрудника. Это действие невозможно отменить.</h3>
+                <h2>Вы уверены?</h2>
+              </div>
+              </div>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round">Удалить</button>
+                <button class="btn btn-secondary btn-round btn-close" (click)="hideDeleteForm()">Отмена</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- КОНЕЦ ФОРМЫ ДЛЯ УДАЛЕНИЯ -->
   </div>
 </div>
